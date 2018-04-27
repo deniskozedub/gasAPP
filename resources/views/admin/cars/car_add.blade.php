@@ -16,7 +16,7 @@
                         <select  name="driver">
                             <option  value="-1" selected>None</option>
                             @foreach($drivers as $driver)
-                                <option value="{{$driver->id}}">{{$driver->name}}</option>
+                                <option value="{{$driver->id}}">{{$driver->getDriver->name}}</option>
                           @endforeach
                         </select>
                     </div>

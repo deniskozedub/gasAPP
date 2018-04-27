@@ -19,6 +19,9 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/skills',function (){
+    return ['Lara','Ok','JS'];
+});
 
 Route::group([
     'middleware'=> 'role:admin',

@@ -32,7 +32,7 @@ class CarController extends Controller
     {
         $car->delete();
 
-        return response(null, Response::HTTP_NO_CONTENT);
+        return response("DELETE",204);
     }
 
     public function store(CarAddRequest $request)
@@ -55,12 +55,13 @@ class CarController extends Controller
 
         return response([
             'data' => new CarResource($car)
-        ],Response::HTTP_CREATED);
+        ],201);
 
     }
 
     public function update(Request $request, Car $car)
     {
        $car->update($request->all());
+       return response('UPDATE',200);
     }
 }

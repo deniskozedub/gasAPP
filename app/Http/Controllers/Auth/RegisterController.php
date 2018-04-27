@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Models\Driverimage;
 use App\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
@@ -52,6 +53,9 @@ class RegisterController extends Controller
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:6|confirmed',
+            'surname'  => 'required|string|max:20',
+            'phone'  => 'required|max:15|unique:users'
+
         ]);
     }
 
@@ -63,10 +67,14 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
+
         return User::create([
-            'name' => $data['name'],
-            'email' => $data['email'],
-            'password' => Hash::make($data['password']),
+            'name'              => $data['name'],
+            'surname'           => $data['surname'],
+            'email'             => $data['email'],
+            'password'          => Hash::make($data['password']),
+            'phone'             => $data['phone'],
+
         ]);
     }
 }

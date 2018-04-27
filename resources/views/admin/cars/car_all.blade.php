@@ -15,7 +15,7 @@
                     <td width="20">{{$item->id}}</td>
                     <td><img width="120px" src="/image_cars/{{$item->imageCar->url}}" alt="{{$item->name}}"></td>
                     <td width="130">{{$item->model}}</td>
-                    <td width="120px">{{$item->driver->name}}</td>
+                    <td width="120px">{{$item->driver->getDriver->name}}</td>
                     <td>
                         <a class="btn btn-success" href="/admin/carssedit/{{$item->id}}">edit</a>
                         <a class="btn btn-danger" href="/admin/carsdeletehandler/{{$item->id}}">delete</a>

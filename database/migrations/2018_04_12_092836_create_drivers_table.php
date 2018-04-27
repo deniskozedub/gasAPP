@@ -15,11 +15,8 @@ class CreateDriversTable extends Migration
     {
         Schema::create('drivers', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('name');
-            $table->string('surname');
-            $table->string('password');
-            $table->integer('phone');
-            $table->string('email');
+            $table->integer('user_id')->unsigned();
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->integer('driver_license')->unsigned();
             $table->foreign('driver_license')->references('id')->on('driverimages')->onDelete('cascade');
             $table->timestamps();

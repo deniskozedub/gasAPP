@@ -24,7 +24,9 @@ class OrderRequest extends FormRequest
     public function rules()
     {
         return [
-            'name'  => 'required|max:100',
+            'name'    => 'required|max:100',
+            'car_id'  => 'required',
+            'map_id'  => 'required'
         ];
     }
 }

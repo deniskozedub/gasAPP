@@ -24,11 +24,8 @@ class DriverAddRequest extends FormRequest
     public function rules()
     {
         return [
-            'name'      => 'required|max:20',
-            'surname'   => 'required|max:25',
-            'phone'     => 'required|unique:drivers|max:13|alpha_num',
-            'email'     => 'required|unique:drivers|email',
-            'image'     => 'required'
+            'driver'      => 'required'
+
 
         ];
     }

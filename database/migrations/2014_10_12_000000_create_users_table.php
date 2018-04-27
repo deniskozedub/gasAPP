@@ -11,12 +11,20 @@ class CreateUsersTable extends Migration
      *
      * @return void
      */
+
     public function up()
     {
+        Schema::create('driverimages', function (Blueprint $table) {
+            $table->increments('id');
+            $table->string('url');
+            $table->timestamps();
+        });
         Schema::create('users', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
+            $table->string('surname');
             $table->string('email')->unique();
+            $table->string('phone');
             $table->string('password');
             $table->rememberToken();
             $table->timestamps();
@@ -30,6 +38,7 @@ class CreateUsersTable extends Migration
      */
     public function down()
     {
+        Schema::dropIfExists('driverimages');
         Schema::dropIfExists('users');
     }
 }

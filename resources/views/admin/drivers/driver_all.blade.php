@@ -13,13 +13,12 @@
                 <th width="240">actions</th>
             </tr>
             @foreach($drivers as $item)
-                <tr>
                     <td width="20">{{$item->id}}</td>
-                    <td width="130">{{$item->name}}</td>
-                    <td width="130">{{$item->surname}}</td>
-                    <td width="50">{{ substr($item->password,20).'...'}}</td>
-                    <td width="100">{{$item->phone}}</td>
-                    <td width="100">{{$item->email}}</td>
+                    <td width="130">{{$item->getDriver->name}}</td>
+                    <td width="130">{{$item->getDriver->surname}}</td>
+                    <td width="50">{{ substr($item->getDriver->password,1,10).'...'}}</td>
+                    <td width="100">{{$item->getDriver->phone}}</td>
+                    <td width="100">{{$item->getDriver->email}}</td>
                     <td><img width="120px" src="/image_drivers/{{$item->imageDriver->url}}" alt="{{$item->name}}"></td>
                     <td>
                         <a class="btn btn-success" href="/admin/driversedit/{{$item->id}}">edit</a>

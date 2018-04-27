@@ -21,6 +21,10 @@ class DatabaseAdminPanel extends Seeder
         DB::table('roles')->insert([
             'name' => 'admin'
         ]);
+        DB::table('user_role')->insert([
+           'user_id' => '1',
+           'role_id' => '1'
+        ]);
     }
 
 }

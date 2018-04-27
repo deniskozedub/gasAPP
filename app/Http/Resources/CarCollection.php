@@ -9,18 +9,17 @@ class CarCollection extends Resource
 
     public function toArray($request)
     {
-        return  [
+        return [
             ['href' => [
                 'link' => route('cars.show', $this->id)
             ],
-            'model'  => $this->model,
-            'driver' => $this->driver,
-            'lisence'=> $this->imageCar,
+                'id'    => $this->id,
+                'model' => $this->model,
+                'driver' => $this->driver->getDriver,
+                'lisence' => $this->imageCar,
 
-        ],
-            [
-                'status' => response('OK','200')
             ]
         ];
     }
+
 }

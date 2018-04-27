@@ -10,4 +10,12 @@ class Driver extends Model
 
         return $this->belongsTo("App\Models\Driverimage","driver_license","id","driverimages");
     }
+
+    public function getDriver()
+    {
+        return $this->belongsTo('App\User','user_id');
+    }
+
+
+
 }

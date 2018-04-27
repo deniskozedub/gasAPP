@@ -12,6 +12,7 @@ use App\Models\Driver;
 use App\Models\Driverimage;
 use App\Models\Map;
 use App\Models\Order;
+use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Laravel\Passport\HasApiTokens, Illuminate\Notifications\Notifiable;
@@ -50,6 +51,7 @@ class AdminPanelController extends Controller
     public function carsAddHandler(CarAddRequest $request)
     {
         //dd($request->image->getClientOriginalName());
+        //dd($request->all());
 
         $ext         = explode("/", $request->image->getClientMimeType());
         $ext         = end($ext);
@@ -99,8 +101,7 @@ class AdminPanelController extends Controller
         //dd($request->all());
 
         $car = Car::find($request->id);
-        $car::where('id', $request->id)->update(['driver_id' => $request->driver]);
-        $car->model   = $request->name;
+        $car->update(['model' => $request->model]);
         $car->save();
         return redirect('admin/carsall');
     }
@@ -127,7 +128,9 @@ class AdminPanelController extends Controller
 
     public function driversAdd()
     {
-        return view('admin/drivers/driver_add');
+        return view('admin/drivers/driver_add')->with([
+            'drivers' => User::all()
+        ]);
     }
 
 
@@ -141,16 +144,11 @@ class AdminPanelController extends Controller
         $request->image->move(public_path('image_drivers'), $name);
         $image       = new Driverimage();
         $image->url  = $name;
-        $image->name = $request->name;
         $image->save();
 
 
         $driver = new Driver();
-        $driver->name           = $request->name;
-        $driver->surname        = $request->surname;
-        $driver->password       = md5($request->pass);
-        $driver->phone          = $request->phone;
-        $driver->email          = $request->email;
+        $driver->user_id        = $request->driver;
         $driver->driver_license = $image->id;
         $driver->save();
         return redirect('admin/driversall');
@@ -180,9 +178,11 @@ class AdminPanelController extends Controller
 
     public function driversEditHandler(Request $request)
     {
-        $driver          = Driver::find($request->id);
+
+        $driver = User::find($request->id);
         $driver->name    = $request->name;
         $driver->surname = $request->surname;
+        $driver->email   = $request->email;
         $driver->phone   = $request->phone;
         $driver->save();
         return redirect('admin/driversall');
