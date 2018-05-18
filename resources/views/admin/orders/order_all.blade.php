@@ -13,7 +13,7 @@
                 <tr>
                     <td width="20">{{$item->id}}</td>
                     <td width="230">{{$item->name}}</td>
-                    <td width="150">{{$item->orderCar->model}} <b>({{$item->orderCar->driver->name}})</b></td>
+                    <td width="150">{{$item->orderCar->model}} <b>({{$item->orderCar->driver->getDriver->name}})</b></td>
                     <td width="250">{{$item->orderZipCode->zipcode}}</td>
                     <td>
                         <a class="btn btn-danger" href="/admin/ordersdeletehandler/{{$item->id}}">delete</a>

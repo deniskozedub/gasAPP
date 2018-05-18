@@ -14,20 +14,14 @@
 
         <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
 
-       {{-- <script>
-            window.addEventListener('load',function () {
-                $.get('skills',function (r) {
-                    console.log(r);
-                })
-            })
-        </script>--}}
-
     </head>
     <body>
         <div id="app">
             <div class="row">
                 <div class="col-md-5">
-
+                    <ul>
+                        <li v-for="skill in skills">@{{skill}}</li>
+                    </ul>
                 </div>
             </div>
 
